@@ -8,5 +8,5 @@ clean:
 novel.txt: mknovel
 	./mknovel > novel.txt
 
-mknovel: debnovel.cpp
-	g++ debnovel.cpp -O3 --std=c++20 -o mknovel
+mknovel: debnovel.cpp Makefile
+	g++ debnovel.cpp -O3 -o mknovel

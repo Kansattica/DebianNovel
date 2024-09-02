@@ -8,13 +8,19 @@ static constexpr std::string_view terminal = "Women will literally install Debia
 static constexpr char pump_char = 'X';
 static constexpr size_t target_word_count = 50000;
 
+#if __cpp_lib_constexpr_string >= 201907L
+#define HAVE_CONSTEXPR_STR constexpr
+#else
+#define HAVE_CONSTEXPR_STR 
+#endif
+
 template <typename T>
 static constexpr size_t word_count(const T& str) noexcept
 {
 	return std::count(str.begin(), str.end(), ' ') + 1;
 }
 
-static constexpr void replace_pump_char_with(std::string& novel, std::string_view new_text) noexcept
+static HAVE_CONSTEXPR_STR void replace_pump_char_with(std::string& novel, std::string_view new_text) noexcept
 {
 	novel.replace(novel.find(pump_char), 1, new_text);
 }
